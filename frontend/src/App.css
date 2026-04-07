@@ -1,0 +1,10 @@
+/* Force bootstrap navbar text to white to avoid overrides */
+.navbar.navbar-dark .navbar-brand,
+.navbar.navbar-dark .nav-link {
+	color: #ffffff !important;
+}
+
+.navbar .form-control {
+	color: #ffffff !important;
+}
+

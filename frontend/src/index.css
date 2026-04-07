@@ -1,0 +1,101 @@
+@import "tailwindcss";
+*{
+  background-color: #372C2E;
+}
+
+ /* Navbar styles */
+.navbar{
+  box-shadow: 0 8px 6px -6px black;
+  border-bottom: 4px solid  black;
+  text-transform: uppercase;
+}
+
+.custom-nav-link {
+  position: relative;
+  color: #FFFAFA;
+}
+
+/* underline effect */
+.custom-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: white;
+  transition: 0.3s ease;
+}
+
+/* hover effect */
+.custom-nav-link:hover::after {
+  width: 100%;
+}
+
+.navbar-brand{
+  font-size: 200;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 2px;
+}
+
+
+/* footer style */
+.footer {
+  background-color: #372C2E;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.4);
+  line-height: 1.6;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  margin: 0 7px;  
+}
+
+.footer a:hover {
+  text-decoration: underline;
+  
+}
+
+/* page not found page */
+.pnf {
+  background-color: #372C2E;
+  color: white;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.pnf-title {
+  font-size: 90px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.pnf-subtitle {
+  font-size: 24px;
+  margin-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+.pnf-link {
+  color: white;
+  font-size: 20px;
+  border: 1px solid white;
+  margin-top: 5px;
+  margin: 10px;
+  padding: 7px;
+}
+
+/* register page */
+.form{
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  height:75vh;
+ 
+}
+
