@@ -10,6 +10,7 @@ const Register = () => {
   const [name,setName]=useState("") 
   const [phone,setPhone]=useState("")
   const [address,setAddress]=useState("")
+  const [answer,setAnswer]=useState("")
 
   const navigate = useNavigate();
 
@@ -22,7 +23,8 @@ const Register = () => {
         password,
         name,
         phone,
-        address
+        address,
+        answer
       });
       if(res.data.success) {
         toast.success(res.data.message);
@@ -43,7 +45,7 @@ const Register = () => {
       author={"Sharvari Kale"}
     >
 
-      <div className="border-2 border-black max-w-md mx-auto mt-8 mb-20 bg-white/10 backdrop-blur-md rounded-lg flex items-center justify-center p-6">
+      <div className="border-2 border-black max-w-md mx-auto mt-12 mb-20 bg-white/10 backdrop-blur-md rounded-lg flex items-center justify-center p-6">
 
         <form onSubmit={handleSubmit} className="w-full">
 
@@ -60,6 +62,7 @@ const Register = () => {
               onChange={(e) => setName(e.target.value)}
               placeholder="Enter name"
               className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
+              required
             />
           </div>
 
@@ -72,6 +75,7 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter email"
               className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
+              required
             />
           </div>
 
@@ -84,6 +88,18 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
+              required
+            />
+          </div>
+          <div className="mb-4 text-white">
+            <label className="block mb-1 text-sm">Question_Answer</label>
+            <input 
+              type="text"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              placeholder="What is your mother’s maiden name?"
+              className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
+              required
             />
           </div>
 
@@ -98,6 +114,7 @@ const Register = () => {
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="Phone"
                 className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
+                required
               />
             </div>
 
@@ -108,6 +125,7 @@ const Register = () => {
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="Address"
                 className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
+                required
               />
             </div>
 

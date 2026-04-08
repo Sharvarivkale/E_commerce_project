@@ -1,12 +1,13 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
 import { useAuth } from '../../context/auth_context';
 import { toast } from 'react-toastify';
 
-
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const [open, setOpen] = useState(false); // ✅ manual dropdown
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     setAuth({
@@ -15,55 +16,66 @@ const Header = () => {
     });
     localStorage.removeItem("auth");
     toast.success("Logout successful");
+    navigate("/login");
   };
 
   return (
-    
-    <nav className="navbar navbar-dark bg-[#372C2E] border-bottom border-body h-[9vh]" data-bs-theme="dark">
-      <div className="container-fluid d-flex align-items-center justify-content-between">
+    <nav className="navbar h-[9vh] flex items-center px-6 justify-between text-white">
 
-        <NavLink to="/" className="navbar-brand text-white d-flex flex-row">
-          <FiShoppingCart className='me-2 ms-1 mt-1' /> E-commerce brand
-        </NavLink>
+      {/* Logo */}
+      <NavLink to="/" className="navbar-brand text-white flex items-center">
+        <FiShoppingCart className="me-2" /> E-commerce
+      </NavLink>
 
-        <ul className="nav">
-          <li className="nav-item">
-            <NavLink to="/" className="nav-link text-white">Home</NavLink>
-          </li>
+      {/* Menu */}
+      <div className="flex items-center gap-6">
 
-          <li className="nav-item">
-            <NavLink to="/" className="nav-link text-white">Category</NavLink>
-          </li>
+        <NavLink to="/" className="custom-nav-link">Home</NavLink>
+        <NavLink to="/category" className="custom-nav-link">Category</NavLink>
 
-          {!auth.user ? (
-            <>
-              <li className="nav-item">
-                <NavLink to="/register" className="nav-link text-white">
-                  Register
+        {!auth?.user ? (
+          <>
+            <NavLink to="/register" className="custom-nav-link">Register</NavLink>
+            <NavLink to="/login" className="custom-nav-link">Login</NavLink>
+          </>
+        ) : (
+          <div className="relative">
+
+            {/* Button */}
+            <button
+              onClick={() => setOpen(!open)}
+              className="bg-gray-700 px-3 py-1 rounded"
+            >
+              {auth?.user?.name}
+            </button>
+
+            {/* Dropdown */}
+            {open && (
+              <div className="absolute right-0 mt-2 bg-white text-black rounded shadow-lg w-40">
+
+                <NavLink
+                  to="/dashboard"
+                  className="block px-4 py-2 hover:bg-gray-200"
+                  onClick={() => setOpen(false)}
+                >
+                  Dashboard
                 </NavLink>
-              </li>
 
-              <li className="nav-item">
-                <NavLink to="/login" className="nav-link text-white">
-                  Login
-                </NavLink>
-              </li>
-            </>
-          ) : (
-            
-              <li className="nav-item">
-                <NavLink to="/login" onClick={handleLogout} className="nav-link text-white">
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                >
                   Logout
-                </NavLink>
-              </li>
-          )}
-          <li className="nav-item">
-                <NavLink to="/home" className="nav-link text-white">
-                  Cart(0)
-                </NavLink>
-              </li>
-            
-        </ul>
+                </button>
+
+              </div>
+            )}
+          </div>
+        )}
+
+        <NavLink to="/cart" className="custom-nav-link">
+          Cart (0)
+        </NavLink>
 
       </div>
     </nav>

@@ -12,7 +12,7 @@ const Login = () => {
 
         const navigate = useNavigate();
       const location = useLocation();
-      const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     try {
 
@@ -92,13 +92,21 @@ const Login = () => {
             />
           </div>
 
-          <div className="flex justify-center">
-            <button 
+          <div className="flex justify-center items-center gap-4">
+             <button 
               type="submit" 
               className="text-white bg-gray-800 hover:bg-gray-500 border border-white px-4 py-2 rounded"
             >
               LOGIN
             </button>
+            <button 
+              type="submit" 
+              className="text-white bg-gray-800 hover:bg-gray-500 border border-white px-4 py-2 rounded"
+              onClick={() => navigate("/forgot_password")}
+            >
+              Forgot Password
+            </button>
+           
           </div>
 
         </form>

@@ -6,11 +6,10 @@ const jwt=require("jsonwebtoken")
 // registeration
 async function registerController(req,res){
 
-  //check whether all fields are occupy or not 
   try {
-    const {email,password,name,address,phone,role}=req.body;
+    const {email,password,name,address,phone,role,answer}=req.body;
 
-    if(!email || !password ||!name ||!address || !phone){
+    if(!email || !password ||!name ||!address || !phone || !answer){
       return(
         res.status(400).send({
           message:"all fields are required"
@@ -33,6 +32,7 @@ async function registerController(req,res){
       name,
       phone,
       address,
+      answer, 
       role
     })
 
@@ -116,8 +116,45 @@ async function loginController(req,res){
   }
 }
 
+async function forgotPasswordController(req,res){
+  const {email,answer,newpassword}=req.body;
+
+  if(!email || !answer || !newpassword){
+    return res.status(400).send({
+      success:false,
+      message:"all fields are required"
+    })
+  }
+
+  // check if user exists
+  const user=await usermodel.findOne({email})
+  if(!user){
+    return res.status(404).send({
+      success:false,
+      message:"user not found"
+    })
+  }
+
+  // check if security answer is correct
+  if(user.answer !== answer){
+    return res.status(400).send({
+      success:false,
+      message:"invalid security answer"
+    })
+  }
+
+  // update password
+  user.password=await hashpassword(newpassword)
+  await user.save()
+
+  return res.status(200).send({
+    success:true,
+    message:"password reset successful"
+  })
+}
+
 // test
 async function textController(req,res){
  return res.send("proteted routes")
 }
-module.exports={registerController,loginController,textController}
+module.exports={registerController,loginController,textController,forgotPasswordController}
