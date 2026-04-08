@@ -8,7 +8,8 @@ import { useAuth } from '../../context/auth_context';
 const Login = () => {
        const [email,setEmail]=useState("") 
         const [password,setPassword]=useState("")
-        const {Auth,setAuth}=useAuth();
+        const [auth,setAuth]=useAuth();
+
         const navigate = useNavigate();
       const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,11 +23,16 @@ const Login = () => {
       if(res.data.success) {
         toast.success(res.data.message);
         setAuth({
-          ...Auth,
+          ...auth,
           user: res.data.user,
           token: res.data.token
         });
-        localStorage.setItem("auth", JSON.stringify(res.data));
+        localStorage.setItem("auth", JSON.stringify({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token
+        }));
+        
         navigate("/");
       } else {
         toast.error("Login failed!");
