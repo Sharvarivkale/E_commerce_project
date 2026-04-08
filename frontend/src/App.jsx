@@ -9,12 +9,17 @@ import Pagenotfound from './pages/Pagenotfound'
 import Policy from './pages/Policy'
 import Login from './pages/auth/login'
 import Register from './pages/auth/register'
+import Dashboard from './pages/user/Dashboard';
+import  {PrivateRoute} from './routes/PrivateRoute';
 const App = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/dashboard" element={<PrivateRoute />}>
+          <Route path="" element={<Dashboard />}></Route>
+        </Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/contact" element={<Contact />}></Route>

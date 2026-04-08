@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
 import { useAuth } from '../../context/auth_context';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
+
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -19,10 +18,9 @@ const Header = () => {
   };
 
   return (
-    <>
-      <ToastContainer />
-      <nav className="navbar navbar-dark bg-[#372C2E] border-bottom border-body h-[9vh]" data-bs-theme="dark">
-        <div className="container-fluid d-flex align-items-center justify-content-between">
+    
+    <nav className="navbar navbar-dark bg-[#372C2E] border-bottom border-body h-[9vh]" data-bs-theme="dark">
+      <div className="container-fluid d-flex align-items-center justify-content-between">
 
         <NavLink to="/" className="navbar-brand text-white d-flex flex-row">
           <FiShoppingCart className='me-2 ms-1 mt-1' /> E-commerce brand
@@ -69,7 +67,6 @@ const Header = () => {
 
       </div>
     </nav>
-    </>
   );
 };
 

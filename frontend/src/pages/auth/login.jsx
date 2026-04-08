@@ -1,5 +1,5 @@
 import React,{ useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import Layout from '../../components/layout/layout'
 import { toast } from 'react-toastify';
 import axios from 'axios'
@@ -11,6 +11,7 @@ const Login = () => {
         const [auth,setAuth]=useAuth();
 
         const navigate = useNavigate();
+      const location = useLocation();
       const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -32,8 +33,8 @@ const Login = () => {
           user: res.data.user,
           token: res.data.token
         }));
-        
-        navigate("/");
+
+        navigate(location.state?.from || "/");
       } else {
         toast.error("Login failed!");
       }
