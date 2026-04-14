@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "concurrently": "^9.2.1",
+    "express-formidable": "^1.2.0",
+    "fs": "^0.0.1-security",
     "slugify": "^1.6.9"
   },
   "devDependencies": {
