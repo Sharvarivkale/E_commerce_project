@@ -12,5 +12,10 @@ router.get('/user_auth',requiresignIn,(req,res)=>{
         ok:true
     })
 })
+router.get('/admin_auth',requiresignIn,isadmin,(req,res)=>{
+    res.status(200).send({
+        ok:true
+    })
+})
 
 module.exports=router

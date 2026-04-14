@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
-  const [open, setOpen] = useState(false); // ✅ manual dropdown
+  const [open, setOpen] = useState(false); 
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -28,7 +28,7 @@ const Header = () => {
       </NavLink>
 
       {/* Menu */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-6 z-1">
 
         <NavLink to="/" className="custom-nav-link">Home</NavLink>
         <NavLink to="/category" className="custom-nav-link">Category</NavLink>
@@ -54,7 +54,7 @@ const Header = () => {
               <div className="absolute right-0 mt-2 bg-white text-black rounded shadow-lg w-40">
 
                 <NavLink
-                  to="/dashboard"
+                  to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
                   className="block px-4 py-2 hover:bg-gray-200"
                   onClick={() => setOpen(false)}
                 >

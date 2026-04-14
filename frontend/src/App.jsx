@@ -11,23 +11,44 @@ import Login from './pages/auth/login'
 import Register from './pages/auth/register'
 import Dashboard from './pages/user/Dashboard';
 import  {PrivateRoute} from './routes/PrivateRoute';
+import { AdminPrivateRoute } from './routes/adminprivateroute';
 import Forgotpassword from './pages/auth/Forgotpassword';
+import Admindashboard from './pages/admin/admindashboard';
+import CreateCategory from './pages/admin/CreateCategory';
+import CreateProduct from './pages/admin/CreateProduct';
+import Users from './pages/admin/Users';
+import UserOrder from './pages/user/userorder';
+import UserProfile from './pages/user/UserProfile';
 const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/dashboard" element={<PrivateRoute />}>
-          <Route path="" element={<Dashboard />}></Route>
-        </Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/forgot_password" element={<Forgotpassword />}></Route>
-        <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/policy" element={<Policy />}></Route>
-        <Route path="*" element={<Pagenotfound />}></Route>
-      </Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/about" element={<About />} />
+
+  {/* USER ROUTES */}
+  <Route path="/dashboard/user" element={<PrivateRoute />}>
+    <Route index element={<Dashboard />} />
+    <Route path="profile" element={<UserProfile />} />
+    <Route path="order" element={<UserOrder />} />
+  </Route>
+
+
+  {/* ADMIN ROUTES */}
+  <Route path="/dashboard/admin" element={<AdminPrivateRoute />}>
+    <Route index element={<Admindashboard />} />
+    <Route path="create-category" element={<CreateCategory />} />
+    <Route path="create-product" element={<CreateProduct />} />
+    <Route path="users" element={<Users />} />
+  </Route>
+
+  <Route path="/login" element={<Login />} />
+  <Route path="/register" element={<Register />} />
+  <Route path="/forgot_password" element={<Forgotpassword />} />
+  <Route path="/contact" element={<Contact />} />
+  <Route path="/policy" element={<Policy />} />
+  <Route path="*" element={<Pagenotfound />} />
+</Routes>
 
     </>
   )
