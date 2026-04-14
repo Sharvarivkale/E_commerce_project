@@ -2,6 +2,7 @@ const express=require("express")
 const dotenv=require("dotenv")
 const connectiontodb=require("./config/db")
 const authroutes=require("./routes/auth.route")
+const categoryroute=require("./routes/category.route")
 const cors=require("cors")
 dotenv.config()
 connectiontodb()
@@ -14,6 +15,7 @@ app.get("/",(req,res)=>{
 })
 
 app.use('/auth',authroutes)
+app.use('/category',categoryroute)
 
 const port=process.env.PORT || 8080
 
