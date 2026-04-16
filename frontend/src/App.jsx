@@ -1,6 +1,7 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'antd/dist/reset.css';
 import { Routes,Route } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'

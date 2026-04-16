@@ -15,6 +15,8 @@ app.get("/",(req,res)=>{
   res.send("<h1>hii wlc to my project</h1>")
 })
 
+
+
 app.use('/auth',authroutes)
 app.use('/category',categoryroute)
 app.use('/product',productroute)
