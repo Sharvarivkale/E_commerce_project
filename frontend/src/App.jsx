@@ -17,9 +17,11 @@ import Forgotpassword from './pages/auth/Forgotpassword';
 import Admindashboard from './pages/admin/admindashboard';
 import CreateCategory from './pages/admin/CreateCategory';
 import CreateProduct from './pages/admin/CreateProduct';
+import Products from './pages/admin/products';
 import Users from './pages/admin/Users';
 import UserOrder from './pages/user/userorder';
 import UserProfile from './pages/user/UserProfile';
+
 const App = () => {
   return (
     <>
@@ -40,6 +42,7 @@ const App = () => {
     <Route index element={<Admindashboard />} />
     <Route path="create-category" element={<CreateCategory />} />
     <Route path="create-product" element={<CreateProduct />} />
+    <Route path="products" element={<Products />} />
     <Route path="users" element={<Users />} />
   </Route>
 
