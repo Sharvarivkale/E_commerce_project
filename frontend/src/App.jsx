@@ -21,6 +21,7 @@ import Products from './pages/admin/products';
 import Users from './pages/admin/Users';
 import UserOrder from './pages/user/userorder';
 import UserProfile from './pages/user/UserProfile';
+import UpdateProduct from './pages/admin/UpdateProduct';
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
     <Route index element={<Admindashboard />} />
     <Route path="create-category" element={<CreateCategory />} />
     <Route path="create-product" element={<CreateProduct />} />
+    <Route path="get_update_product/:slug" element={<UpdateProduct />} />
     <Route path="products" element={<Products />} />
     <Route path="users" element={<Users />} />
   </Route>

@@ -35,11 +35,11 @@ const Products = () => {
         <div className="row ">
   {products?.map((p) => (
     <div className="col-md-4" key={p._id}>
-      <Link to={`/dashboard/admin/products/${p.slug}`} style={{ textDecoration: "none" }}>
+      <Link to={`/dashboard/admin/get_update_product/${p.slug}`} style={{ textDecoration: "none" }}>
         <div className="card mb-3 text-white">
           <img
             src={`${import.meta.env.VITE_APP}/product/get_product_photo/${p._id}`}
-            className="card-img-top "
+           style={{ height: "250px", objectFit: "cover" }}
             alt={p.name}
           />
           <div className="card-body">
