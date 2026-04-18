@@ -155,5 +155,64 @@ async function deleteProductController(req,res){
     });
   }
 }
+async function productFiltersController(req, res) {
+  try {
+    const { checked, radio } = req.body;
+    let args = {};
+    if (checked.length > 0) args.category = checked;
+    if (radio.length) args.price = { $gte: radio[0], $lte: radio[1] };
+    const products = await productmodel.find(args);
+    res.status(200).send({
+      success: true,
+      data: products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error While Filtering Products",
+      error,
+    });
+  }
+}
 
-module.exports={createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,deleteProductController}
+async function productCountController(req, res) {
+  try {
+    const count = await productmodel.countDocuments();
+    res.status(200).json({
+      success: true,
+      message: "Product count retrieved successfully",
+      data: count
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to retrieve product count",
+      error: error.message
+    });
+  }
+}
+
+
+async function productListController(req, res) {
+  try {
+    const { page } = req.params;
+    const products = await productmodel.find({})
+      .select("-photo")
+      .skip((page - 1) * 6)
+      .limit(6)
+      .sort({ createdAt: -1 });
+    res.status(200).json({
+      success: true,
+      message: "Product list retrieved successfully",
+      data: products
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to retrieve product list",
+      error: error.message
+    });
+  }
+}
+module.exports={createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,deleteProductController,productFiltersController,productCountController,productListController}

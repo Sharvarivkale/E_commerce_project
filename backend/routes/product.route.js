@@ -2,7 +2,7 @@ const express=require('express');
 const router=express.Router();
 const formidable=require('express-formidable');
 const {requiresignIn,isadmin}=require('../middleware/auth.middleware');
-const {createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,deleteProductController}=require('../controller/product.controller');
+const {createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,productCountController,productListController,deleteProductController,productFiltersController}=require('../controller/product.controller');
 const { get } = require('mongoose');
 
 router.post('/create_product',requiresignIn,isadmin,formidable(),createproductController);
@@ -21,5 +21,14 @@ router.put('/update_product/:pid',requiresignIn,isadmin,formidable(),updateProdu
 
 //delete product
 router.delete('/delete_product/:pid',requiresignIn,isadmin,deleteProductController);
+
+//filter product
+router.post('/product_filters',productFiltersController);
+
+//product_count
+router.get('/product_count',productCountController)
+
+//product_list
+router.get('/product_list/:page',productListController);
 
 module.exports=router;
