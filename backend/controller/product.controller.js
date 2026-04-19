@@ -253,4 +253,30 @@ async function searchProductController(req, res) {
   }
 }
 
-module.exports={createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,deleteProductController,productFiltersController,productCountController,productListController,searchProductController}
+// similar products
+async function realtedProductController(req, res) {
+  try {
+    const { pid, cid } = req.params;
+    const products = await productmodel
+      .find({
+        category: cid,
+        _id: { $ne: pid },
+      })
+      .select("-photo")
+      .limit(3)
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "error while geting related product",
+      error,
+    });
+  }
+}
+
+module.exports={createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,deleteProductController,productFiltersController,productCountController,productListController,searchProductController,realtedProductController}

@@ -27,13 +27,14 @@ const Header = () => {
       <NavLink to="/" className="navbar-brand text-white flex items-center">
         <FiShoppingCart className="me-2" /> E-commerce
       </NavLink>
-
+      
+        <SearchInput />
       {/* Menu */}
       <div className="flex items-center gap-6 z-1">
 
         <NavLink to="/" className="custom-nav-link">Home</NavLink>
         <NavLink to="/category" className="custom-nav-link">Category</NavLink>
-        <SearchInput />
+      
 
         {!auth?.user ? (
           <>
