@@ -23,12 +23,14 @@ import UserOrder from './pages/user/userorder';
 import UserProfile from './pages/user/UserProfile';
 import UpdateProduct from './pages/admin/UpdateProduct';
 import ProductDetails from './pages/ProductDetails';
+import Search from './pages/Search';
 
 const App = () => {
   return (
     <>
       <Routes>
   <Route path="/" element={<Home />} />
+  <Route path="/search" element={<Search />} />
   <Route path="/product/:slug" element={<ProductDetails />} />
   <Route path="/about" element={<About />} />
 

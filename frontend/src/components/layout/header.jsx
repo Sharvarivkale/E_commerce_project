@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
 import { useAuth } from '../../context/auth_context';
 import { toast } from 'react-toastify';
+import SearchInput from '../form/Search';
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -32,6 +33,7 @@ const Header = () => {
 
         <NavLink to="/" className="custom-nav-link">Home</NavLink>
         <NavLink to="/category" className="custom-nav-link">Category</NavLink>
+        <SearchInput />
 
         {!auth?.user ? (
           <>

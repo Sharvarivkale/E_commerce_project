@@ -1,6 +1,7 @@
 const mongoose=require('mongoose');
 const fs=require('fs')
 const productmodel=require('../models/productmodel');
+const categorymodel=require('../models/categorymodel');
 const slugify=require('slugify')
 
 
@@ -215,4 +216,41 @@ async function productListController(req, res) {
     });
   }
 }
-module.exports={createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,deleteProductController,productFiltersController,productCountController,productListController}
+
+async function searchProductController(req, res) {
+  try {
+    const { keyword } = req.params;
+    
+    // Find categories that match the keyword
+    const categories = await categorymodel.find({
+      name: { $regex: keyword, $options: "i" }
+    });
+    
+    const categoryIds = categories.map(c => c._id);
+
+    const results = await productmodel
+      .find({
+        $or: [
+          { name: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
+          { category: { $in: categoryIds } }
+        ],
+      })
+      .select("-photo")
+      .populate("category");
+
+    res.json({
+      success: true,
+      data: results
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error In Search Product API",
+      error,
+    });
+  }
+}
+
+module.exports={createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,deleteProductController,productFiltersController,productCountController,productListController,searchProductController}
