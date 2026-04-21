@@ -279,4 +279,23 @@ async function realtedProductController(req, res) {
   }
 }
 
-module.exports={createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,deleteProductController,productFiltersController,productCountController,productListController,searchProductController,realtedProductController}
+async function productCategoryController(req, res) {
+  try {
+    const category = await categorymodel.findOne({ slug: req.params.slug });
+    const products = await productmodel.find({ category }).populate("category");
+    res.status(200).send({
+      success: true,
+      category,
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      error,
+      message: "Error While Getting products",
+    });
+  }
+}
+
+module.exports={createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,deleteProductController,productFiltersController,productCountController,productListController,searchProductController,realtedProductController,productCategoryController}

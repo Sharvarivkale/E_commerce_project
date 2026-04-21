@@ -25,6 +25,8 @@ import UpdateProduct from './pages/admin/UpdateProduct';
 import ProductDetails from './pages/ProductDetails';
 import Search from './pages/Search';
 import ProductMoreDetail from './pages/productmoredetail';
+import Categories from './pages/Categories';
+import CategoryProduct from './pages/CategoryProduct';
 
 const App = () => {
   return (
@@ -33,6 +35,8 @@ const App = () => {
   <Route path="/" element={<Home />} />
   <Route path="/search" element={<Search />} />
   <Route path="/product/:slug" element={<ProductMoreDetail />} />
+  <Route path="/categories" element={<Categories />} />
+  <Route path="/category/:slug" element={<CategoryProduct />} />
   <Route path="/about" element={<About />} />
 
   {/* USER ROUTES */}

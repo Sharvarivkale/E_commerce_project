@@ -2,7 +2,7 @@ const express=require('express');
 const router=express.Router();
 const formidable=require('express-formidable');
 const {requiresignIn,isadmin}=require('../middleware/auth.middleware');
-const {createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,productCountController,productListController,deleteProductController,productFiltersController,searchProductController,realtedProductController}=require('../controller/product.controller');
+const {createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,productCountController,productListController,deleteProductController,productFiltersController,searchProductController,realtedProductController,productCategoryController}=require('../controller/product.controller');
 const { get } = require('mongoose');
 
 router.post('/create_product',requiresignIn,isadmin,formidable(),createproductController);
@@ -36,5 +36,8 @@ router.get('/search/:keyword',searchProductController);
 
 //similar product
 router.get('/related-product/:pid/:cid', realtedProductController);
+
+//category wise product
+router.get("/product-category/:slug", productCategoryController);
 
 module.exports=router;
