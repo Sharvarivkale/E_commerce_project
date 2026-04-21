@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate, Link } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
 import { useAuth } from '../../context/auth_context';
+import { useCart } from '../../context/cart_context';
 import { toast } from 'react-toastify';
 import SearchInput from '../form/Search';
 import useCategory from '../../hooks/useCategory';
+import { Badge } from 'antd';
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const [cart, setCart] = useCart();
   const [open, setOpen] = useState(false); 
   const [catOpen, setCatOpen] = useState(false);
   const categories = useCategory();
@@ -110,7 +113,9 @@ const Header = () => {
         )}
 
         <NavLink to="/cart" className="custom-nav-link">
-          Cart (0)
+          <Badge count={cart?.length} showZero offset={[10, -5]}>
+            <span className="text-white">Cart</span>
+          </Badge>
         </NavLink>
 
       </div>

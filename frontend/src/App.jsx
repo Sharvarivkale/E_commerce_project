@@ -27,12 +27,14 @@ import Search from './pages/Search';
 import ProductMoreDetail from './pages/productmoredetail';
 import Categories from './pages/Categories';
 import CategoryProduct from './pages/CategoryProduct';
+import CartPage from './pages/CartPage';
 
 const App = () => {
   return (
     <>
       <Routes>
   <Route path="/" element={<Home />} />
+  <Route path="/cart" element={<CartPage />} />
   <Route path="/search" element={<Search />} />
   <Route path="/product/:slug" element={<ProductMoreDetail />} />
   <Route path="/categories" element={<Categories />} />

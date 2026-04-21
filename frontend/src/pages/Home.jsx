@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout/layout';
 import { useAuth } from '../context/auth_context';
+import { useCart } from '../context/cart_context';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Checkbox, Radio } from 'antd';
+import { Checkbox, Radio, Badge } from 'antd';
 import { Prices } from '../components/others/product';
+import { toast } from 'react-toastify';
 
 const Home = () => {
   const navigate = useNavigate();
   const [auth, setAuth] = useAuth();
+  const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [total, setTotal] = useState(0);
@@ -148,33 +151,46 @@ const Home = () => {
             <div className="row">
               {products?.map((p) => (
                 <div className="col-md-4 mb-4" key={p._id}>
-                  <div className="card h-100 text-white bg-dark">
-                    <img
-                      src={`${import.meta.env.VITE_APP}/product/get_product_photo/${p._id}`}
-                      className="card-img-top"
-                      style={{ height: "250px", objectFit: "cover" }}
-                      alt={p.name}
-                    />
-                    <div className="card-body d-flex flex-column">
-                      <h5 className="card-title">{p.name}</h5>
-                      <p className="card-text">
-                        {p.description?.substring(0, 30)}...
-                      </p>
-                      <p className="card-text fw-bold">$ {p.price}</p>
+                  <Badge.Ribbon 
+                    text="Added" 
+                    color="cyan" 
+                    style={{ display: cart.some(item => item._id === p._id) ? "block" : "none" }}
+                  >
+                    <div className="card h-100 text-white bg-dark">
+                      <img
+                        src={`${import.meta.env.VITE_APP}/product/get_product_photo/${p._id}`}
+                        className="card-img-top"
+                        style={{ height: "250px", objectFit: "cover" }}
+                        alt={p.name}
+                      />
+                      <div className="card-body d-flex flex-column">
+                        <h5 className="card-title">{p.name}</h5>
+                        <p className="card-text">
+                          {p.description?.substring(0, 30)}...
+                        </p>
+                        <p className="card-text fw-bold">$ {p.price}</p>
 
-                      <div className="mt-auto">
-                        <button
-                          className="btn btn-primary me-2"
-                          onClick={() => navigate(`/product/${p.slug}`)}
-                        >
-                          More Details
-                        </button>
-                        <button className="btn btn-secondary">
-                          Add to Cart
-                        </button>
+                        <div className="mt-auto">
+                          <button
+                            className="btn btn-primary me-2"
+                            onClick={() => navigate(`/product/${p.slug}`)}
+                          >
+                            More Details
+                          </button>
+                          <button 
+                            className="btn btn-secondary"
+                            onClick={() => {
+                              setCart([...cart, p]);
+                              localStorage.setItem("cart", JSON.stringify([...cart, p]));
+                              toast.success("Item Added to cart");
+                            }}
+                          >
+                            Add to Cart
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Badge.Ribbon>
                 </div>
               ))}
             </div>
