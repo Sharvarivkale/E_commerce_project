@@ -32,74 +32,74 @@ const Forgotpassword = () => {
   };
 
   return (
-    
-  <Layout title={"Forgot Password"}>
+    <Layout title={"Reset Password - E-commerce"}>
+      <div className="form-container">
+        <div className="glass-card w-full max-w-md shadow-2xl">
+          <form onSubmit={handleSubmit}>
+            <h1 className="text-3xl font-bold mb-8 text-center text-[#6366f1] tracking-tight">
+              RESET PASSWORD
+            </h1>
 
-    <div className="border-2 border-black max-w-md mx-auto mt-12 mb-20 bg-white/10 backdrop-blur-md rounded-lg flex items-center justify-center p-6">
+            <div className="mb-6">
+              <label htmlFor="email" className="block mb-2 text-sm font-semibold text-gray-300">
+                Email Address
+              </label>
+              <input 
+                type="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                id="email" 
+                className="w-full bg-[#121212] border border-[#374151] text-white rounded-lg px-4 py-3 focus:outline-none focus:border-[#6366f1] transition-colors"
+                placeholder="name@company.com" 
+                required 
+              />
+            </div>
 
-      <form onSubmit={handleSubmit} className="w-full">
+            <div className="mb-6">
+              <label htmlFor="answer" className="block mb-2 text-sm font-semibold text-gray-300">
+                Security Question: Mother's Maiden Name?
+              </label>
+              <input 
+                type="text" 
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                id="answer" 
+                className="w-full bg-[#121212] border border-[#374151] text-white rounded-lg px-4 py-3 focus:outline-none focus:border-[#6366f1] transition-colors"
+                placeholder="Answer" 
+                required 
+              />
+            </div>
 
-        <div className="flex justify-center font-bold mb-8 text-xl text-white">
-          <h1>FORGOT PASSWORD</h1>
+            <div className="mb-8">
+              <label htmlFor="newpassword" className="block mb-2 text-sm font-semibold text-gray-300">
+                New Password
+              </label>
+              <input 
+                type="password" 
+                value={newpassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                id="newpassword" 
+                className="w-full bg-[#121212] border border-[#374151] text-white rounded-lg px-4 py-3 focus:outline-none focus:border-[#6366f1] transition-colors"
+                placeholder="••••••••" 
+                required 
+              />
+            </div>
+
+            <button 
+              type="submit" 
+              className="w-full bg-[#6366f1] hover:bg-[#4f46e5] text-white font-bold py-3 rounded-lg transition-colors shadow-lg"
+            >
+              RESET PASSWORD
+            </button>
+            
+            <p className="mt-6 text-center text-gray-400 text-sm">
+              Remember your password? <span onClick={() => navigate("/login")} className="text-[#6366f1] cursor-pointer hover:underline">Login</span>
+            </p>
+          </form>
         </div>
-
-        {/* Email */}
-        <div className="mb-4 text-white">
-          <label className="block mb-1 text-sm">Email</label>
-          <input 
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter email"
-            className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
-            required
-          />
-        </div>
-
-        {/* New Password */}
-        <div className="mb-4 text-white">
-          <label className="block mb-1 text-sm">New Password</label>
-          <input 
-            type="password"
-            value={newpassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            placeholder="Enter new password"
-            className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
-            required
-          />
-        </div>
-
-        {/* Answer */}
-        <div className="mb-4 text-white">
-          <label className="block mb-1 text-sm">
-            What is your mother’s maiden name?
-          </label>
-          <input 
-            type="text"
-            value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
-            placeholder="Enter your answer"
-            className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
-            required
-          />
-        </div>
-
-        {/* Button */}
-        <div className="flex justify-center">
-          <button 
-            type="submit"
-            className="text-white bg-gray-800 hover:bg-gray-500 border border-white px-4 py-2 rounded"
-          >
-            RESET PASSWORD
-          </button>
-        </div>
-
-      </form>
-
-    </div>
-
-  </Layout>
-);
+      </div>
+    </Layout>
+  );
 };
 
 export default Forgotpassword;

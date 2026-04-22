@@ -3,23 +3,24 @@ import { NavLink } from 'react-router-dom'
 
 const UserMenu = () => {
   return (
-     <>
-    <div className='text-center'>
-   <div className="list-group bg-[#372C2E] text-white">
-    <h4>User Menu</h4>
- <NavLink to="/dashboard/user/profile" className="list-group-item list-group-item-action !bg-[#372C2E] !text-white">
-  User Profile
-</NavLink>
+    <div className='glass-card p-4'>
+      <div className="list-group">
+        <h4 className="text-xl font-bold mb-4 text-[#6366f1] border-b border-[#374151] pb-2">User Dashboard</h4>
+        <NavLink 
+          to="/dashboard/user/profile" 
+          className={({ isActive }) => `block px-4 py-3 rounded-lg mb-2 transition-colors ${isActive ? 'bg-[#6366f1] text-white' : 'text-gray-300 hover:bg-[#374151]'}`}
+        >
+          Profile
+        </NavLink>
 
-<NavLink to="/dashboard/user/order" className="list-group-item list-group-item-action !bg-[#372C2E] !text-white">
-  User Orders
-</NavLink>
-
-
-</div>
-</div>
-
-    </>
+        <NavLink 
+          to="/dashboard/user/order" 
+          className={({ isActive }) => `block px-4 py-3 rounded-lg transition-colors ${isActive ? 'bg-[#6366f1] text-white' : 'text-gray-300 hover:bg-[#374151]'}`}
+        >
+          Orders
+        </NavLink>
+      </div>
+    </div>
   )
 }
 

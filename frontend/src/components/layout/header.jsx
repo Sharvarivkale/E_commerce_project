@@ -27,16 +27,19 @@ const Header = () => {
   };
 
   return (
-    <nav className="navbar h-[9vh] flex items-center px-6 justify-between text-white">
+    <nav className="navbar min-h-[9vh] flex items-center px-6 justify-between">
 
       {/* Logo */}
-      <NavLink to="/" className="navbar-brand text-white flex items-center">
-        <FiShoppingCart className="me-2" /> E-commerce
+      <NavLink to="/" className="navbar-brand flex items-center">
+        <FiShoppingCart className="me-2" /> E-COMMERCE
       </NavLink>
       
+      <div className="flex-1 max-w-md mx-4">
         <SearchInput />
+      </div>
+
       {/* Menu */}
-      <div className="flex items-center gap-6 z-1">
+      <div className="flex items-center gap-6">
 
         <NavLink to="/" className="custom-nav-link">Home</NavLink>
         
@@ -44,29 +47,31 @@ const Header = () => {
         <div className="relative">
           <button
             onClick={() => setCatOpen(!catOpen)}
-            className="custom-nav-link bg-transparent border-none"
+            className="custom-nav-link bg-transparent border-none cursor-pointer"
           >
-            Category
+            Categories
           </button>
           {catOpen && (
-            <div className="absolute left-0 mt-2 bg-white text-black rounded shadow-lg w-48 z-50">
+            <div className="absolute left-0 mt-3 bg-[#1e1e1e] border border-[#374151] text-white rounded-lg shadow-xl w-56 z-50 overflow-hidden">
               <Link
                 to="/categories"
-                className="block px-4 py-2 hover:bg-gray-200 border-b"
+                className="block px-4 py-3 hover:bg-[#374151] transition-colors border-b border-[#374151]"
                 onClick={() => setCatOpen(false)}
               >
                 All Categories
               </Link>
-              {categories?.map((c) => (
-                <Link
-                  key={c._id}
-                  to={`/category/${c.slug}`}
-                  className="block px-4 py-2 hover:bg-gray-200"
-                  onClick={() => setCatOpen(false)}
-                >
-                  {c.name}
-                </Link>
-              ))}
+              <div className="max-h-60 overflow-y-auto">
+                {categories?.map((c) => (
+                  <Link
+                    key={c._id}
+                    to={`/category/${c.slug}`}
+                    className="block px-4 py-3 hover:bg-[#374151] transition-colors"
+                    onClick={() => setCatOpen(false)}
+                  >
+                    {c.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
         </div>
@@ -80,21 +85,21 @@ const Header = () => {
         ) : (
           <div className="relative">
 
-            {/* Button */}
+            {/* User Dropdown Button */}
             <button
               onClick={() => setOpen(!open)}
-              className="bg-gray-700 px-3 py-1 rounded"
+              className="bg-[#374151] hover:bg-[#4b5563] text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
             >
               {auth?.user?.name}
+              <span className="text-xs">▼</span>
             </button>
 
-            {/* Dropdown */}
+            {/* Dropdown Menu */}
             {open && (
-              <div className="absolute right-0 mt-2 bg-white text-black rounded shadow-lg w-40 z-50">
-
+              <div className="absolute right-0 mt-3 bg-[#1e1e1e] border border-[#374151] text-white rounded-lg shadow-xl w-48 z-50 overflow-hidden">
                 <NavLink
                   to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
-                  className="block px-4 py-2 hover:bg-gray-200"
+                  className="block px-4 py-3 hover:bg-[#374151] transition-colors border-b border-[#374151]"
                   onClick={() => setOpen(false)}
                 >
                   Dashboard
@@ -102,11 +107,10 @@ const Header = () => {
 
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-4 py-2 hover:bg-gray-200"
+                  className="w-full text-left px-4 py-3 hover:bg-[#374151] transition-colors text-red-400"
                 >
                   Logout
                 </button>
-
               </div>
             )}
           </div>
@@ -114,7 +118,7 @@ const Header = () => {
 
         <NavLink to="/cart" className="custom-nav-link">
           <Badge count={cart?.length} showZero offset={[10, -5]}>
-            <span className="text-white">Cart</span>
+            <span className="text-white hover:text-[#6366f1] transition-colors">Cart</span>
           </Badge>
         </NavLink>
 

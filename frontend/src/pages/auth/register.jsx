@@ -39,112 +39,114 @@ const Register = () => {
 
   return (
     <Layout 
-      title={"Register"} 
+      title={"Register - E-commerce"} 
       description={"Create a new account"} 
       keywords={"register, e-commerce"} 
       author={"Sharvari Kale"}
     >
+      <div className="form-container">
+        <div className="glass-card w-full max-w-lg shadow-2xl my-8">
+          <form onSubmit={handleSubmit}>
+            <h1 className="text-3xl font-bold mb-8 text-center text-[#6366f1] tracking-tight">
+              CREATE ACCOUNT
+            </h1>
 
-      <div className="border-2 border-black max-w-md mx-auto mt-12 mb-20 bg-white/10 backdrop-blur-md rounded-lg flex items-center justify-center p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Name */}
+              <div className="mb-2">
+                <label className="block mb-2 text-sm font-semibold text-gray-300">Name</label>
+                <input 
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="John Doe"
+                  className="w-full bg-[#121212] border border-[#374151] text-white rounded-lg px-4 py-3 focus:outline-none focus:border-[#6366f1] transition-colors"
+                  required
+                />
+              </div>
 
-        <form onSubmit={handleSubmit} className="w-full">
+              {/* Email */}
+              <div className="mb-2">
+                <label className="block mb-2 text-sm font-semibold text-gray-300">Email</label>
+                <input 
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="john@example.com"
+                  className="w-full bg-[#121212] border border-[#374151] text-white rounded-lg px-4 py-3 focus:outline-none focus:border-[#6366f1] transition-colors"
+                  required
+                />
+              </div>
+            </div>
 
-          <div className="flex justify-center font-bold mb-8 text-xl text-white">
-            <h1>REGISTER PAGE</h1>
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+              {/* Password */}
+              <div className="mb-2">
+                <label className="block mb-2 text-sm font-semibold text-gray-300">Password</label>
+                <input 
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full bg-[#121212] border border-[#374151] text-white rounded-lg px-4 py-3 focus:outline-none focus:border-[#6366f1] transition-colors"
+                  required
+                />
+              </div>
 
-          {/* Name */}
-          <div className="mb-4 text-white">
-            <label className="block mb-1 text-sm">Name</label>
-            <input 
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter name"
-              className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
-              required
-            />
-          </div>
+              {/* Phone */}
+              <div className="mb-2">
+                <label className="block mb-2 text-sm font-semibold text-gray-300">Phone</label>
+                <input 
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="+1 234 567 890"
+                  className="w-full bg-[#121212] border border-[#374151] text-white rounded-lg px-4 py-3 focus:outline-none focus:border-[#6366f1] transition-colors"
+                  required
+                />
+              </div>
+            </div>
 
-          {/* Email */}
-          <div className="mb-4 text-white">
-            <label className="block mb-1 text-sm">Email</label>
-            <input 
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter email"
-              className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
-              required
-            />
-          </div>
-
-          {/* Password */}
-          <div className="mb-4 text-white">
-            <label className="block mb-1 text-sm">Password</label>
-            <input 
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
-              required
-            />
-          </div>
-          <div className="mb-4 text-white">
-            <label className="block mb-1 text-sm">Question_Answer</label>
-            <input 
-              type="text"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              placeholder="What is your mother’s maiden name?"
-              className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
-              required
-            />
-          </div>
-
-          {/* Phone + Address */}
-          <div className="flex gap-4 mb-4 text-white">
-
-            <div className="w-1/2">
-              <label className="block mb-1 text-sm">Phone</label>
+            {/* Answer */}
+            <div className="mt-4 mb-4">
+              <label className="block mb-2 text-sm font-semibold text-gray-300">Security Question: Mother's Maiden Name?</label>
               <input 
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="Phone"
-                className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
+                type="text"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                placeholder="Answer"
+                className="w-full bg-[#121212] border border-[#374151] text-white rounded-lg px-4 py-3 focus:outline-none focus:border-[#6366f1] transition-colors"
                 required
               />
             </div>
 
-            <div className="w-1/2">
-              <label className="block mb-1 text-sm">Address</label>
+            {/* Address */}
+            <div className="mb-8">
+              <label className="block mb-2 text-sm font-semibold text-gray-300">Address</label>
               <textarea
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                placeholder="Address"
-                className="w-full bg-transparent border border-white text-white px-3 py-2 rounded placeholder-gray-300"
+                placeholder="Enter your full address"
+                rows="3"
+                className="w-full bg-[#121212] border border-[#374151] text-white rounded-lg px-4 py-3 focus:outline-none focus:border-[#6366f1] transition-colors resize-none"
                 required
               />
             </div>
 
-          </div>
-
-          {/* Button */}
-          <div className="flex justify-center">
+            {/* Button */}
             <button 
               type="submit"
-              className="text-white bg-gray-800 hover:bg-gray-500 border border-white px-4 py-2 rounded"
+              className="w-full bg-[#6366f1] hover:bg-[#4f46e5] text-white font-bold py-3 rounded-lg transition-colors shadow-lg"
             >
               REGISTER
             </button>
-          </div>
-
-        </form>
-
+            
+            <p className="mt-6 text-center text-gray-400 text-sm">
+              Already have an account? <span onClick={() => navigate("/login")} className="text-[#6366f1] cursor-pointer hover:underline">Login</span>
+            </p>
+          </form>
+        </div>
       </div>
-
     </Layout>
   )
 }

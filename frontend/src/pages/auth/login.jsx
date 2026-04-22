@@ -45,74 +45,70 @@ const handleSubmit = async (e) => {
 
   return (
     <Layout 
-      title={"Login"} 
+      title={"Login - E-commerce"} 
       description={"Access your account"} 
       keywords={"login, e-commerce"} 
       author={"Sharvari Kale"} 
     >
-        
+      <div className="form-container">
+        <div className="glass-card w-full max-w-md shadow-2xl">
+          <form onSubmit={handleSubmit}>
+            <h1 className="text-3xl font-bold mb-8 text-center text-[#6366f1] tracking-tight">
+              WELCOME BACK
+            </h1>
 
-      <div className="border-2 border-black h-[400px] max-w-md mx-auto mt-20 mb-20 bg-white/10 backdrop-blur-md rounded-lg flex items-center justify-center">
+            <div className="mb-6">
+              <label htmlFor="email" className="block mb-2 text-sm font-semibold text-gray-300">
+                Email Address
+              </label>
+              <input 
+                type="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                id="email" 
+                className="w-full bg-[#121212] border border-[#374151] text-white rounded-lg px-4 py-3 focus:outline-none focus:border-[#6366f1] transition-colors"
+                placeholder="name@company.com" 
+                required 
+              />
+            </div>
 
-        <form onSubmit={handleSubmit} className="w-full px-6">
+            <div className="mb-8">
+              <label htmlFor="password" className="block mb-2 text-sm font-semibold text-gray-300">
+                Password
+              </label>
+              <input 
+                type="password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                id="password" 
+                className="w-full bg-[#121212] border border-[#374151] text-white rounded-lg px-4 py-3 focus:outline-none focus:border-[#6366f1] transition-colors"
+                placeholder="••••••••" 
+                required 
+              />
+            </div>
 
-          <div className="flex justify-center items-center font-bold mb-8 text-xl text-white">
-            <h1>LOGIN PAGE</h1>
-          </div>
-
-          <div className="mb-5 text-white">
-            <label htmlFor="email-alternative" className="block mb-2 text-sm font-medium">
-              Your email
-            </label>
-            <input 
-              type="email" 
-              name="email" 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              id="email-alternative" 
-              className="mb-6 bg-transparent border border-white text-white rounded px-3 py-2 w-full placeholder-gray-300"
-              placeholder="name@email.com" 
-              required 
-            />
-          </div>
-
-          <div className="mb-5 text-white">
-            <label htmlFor="password-alternative" className="block mb-2 text-sm font-medium">
-              Your password
-            </label>
-            <input 
-              type="password" 
-              name="password" 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              id="password-alternative" 
-              className="mb-6 bg-transparent border border-white text-white rounded px-3 py-2 w-full placeholder-gray-300"
-              placeholder="••••••••" 
-              required 
-            />
-          </div>
-
-          <div className="flex justify-center items-center gap-4">
-             <button 
-              type="submit" 
-              className="text-white bg-gray-800 hover:bg-gray-500 border border-white px-4 py-2 rounded"
-            >
-              LOGIN
-            </button>
-            <button 
-              type="submit" 
-              className="text-white bg-gray-800 hover:bg-gray-500 border border-white px-4 py-2 rounded"
-              onClick={() => navigate("/forgot_password")}
-            >
-              Forgot Password
-            </button>
-           
-          </div>
-
-        </form>
-
+            <div className="flex flex-col gap-4">
+              <button 
+                type="submit" 
+                className="w-full bg-[#6366f1] hover:bg-[#4f46e5] text-white font-bold py-3 rounded-lg transition-colors shadow-lg"
+              >
+                LOGIN
+              </button>
+              <button 
+                type="button" 
+                className="w-full bg-transparent border border-[#374151] hover:bg-[#374151] text-gray-300 py-2 rounded-lg transition-colors text-sm"
+                onClick={() => navigate("/forgot_password")}
+              >
+                Forgot Password?
+              </button>
+            </div>
+            
+            <p className="mt-6 text-center text-gray-400 text-sm">
+              Don't have an account? <span onClick={() => navigate("/register")} className="text-[#6366f1] cursor-pointer hover:underline">Register</span>
+            </p>
+          </form>
+        </div>
       </div>
-
     </Layout>
   )
 }

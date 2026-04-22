@@ -40,76 +40,84 @@ const ProductMoreDetail = () => {
   };
 
   return (
-    <Layout title={"Product Details"}>
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-wrap -mx-4">
-          <div className="w-full md:w-1/2 px-4 mb-8">
+    <Layout title={`${product.name} - E-commerce`}>
+      <div className="container mx-auto px-4 py-12">
+        <div className="glass-card flex flex-wrap -mx-4 p-8">
+          <div className="w-full md:w-1/2 px-4 mb-8 md:mb-0">
             <img
               src={`${import.meta.env.VITE_APP}/product/get_product_photo/${product._id}`}
-              className="w-full h-auto object-cover rounded-lg shadow-md"
+              className="w-full h-[500px] object-cover rounded-xl shadow-2xl border border-[#374151]"
               alt={product.name}
             />
           </div>
-          <div className="w-full md:w-1/2 px-4">
-            <h1 className="text-4xl font-bold mb-4">{product.name}</h1>
-            <p className="text-gray-700 text-lg mb-6">{product.description}</p>
-            <div className="mb-6">
-              <span className="text-2xl font-bold text-green-600">
-                $ {product.price}
-              </span>
+          <div className="w-full md:w-1/2 px-4 flex flex-col">
+            <h1 className="text-5xl font-extrabold mb-4 text-white tracking-tight">{product.name}</h1>
+            <p className="text-gray-400 text-xl mb-8 leading-relaxed">{product.description}</p>
+            
+            <div className="mb-8 p-6 bg-[#121212] rounded-xl border border-[#374151]">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-3xl font-bold text-[#6366f1]">$ {product.price}</span>
+                <span className={`px-3 py-1 rounded-full text-sm font-bold ${product.quantity > 0 ? 'bg-green-900/30 text-green-400' : 'bg-red-900/30 text-red-400'}`}>
+                  {product.quantity > 0 ? 'In Stock' : 'Out of Stock'}
+                </span>
+              </div>
+              
+              <div className="space-y-3 pt-4 border-t border-[#374151]">
+                <div className="flex justify-between">
+                  <span className="font-semibold text-gray-400">Category:</span>
+                  <span className="text-white">{product?.category?.name}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="font-semibold text-gray-400">Shipping:</span>
+                  <span className="text-white">{product?.shipping ? "Free Delivery" : "Standard"}</span>
+                </div>
+              </div>
             </div>
-            <div className="space-y-4">
-              <p>
-                <span className="font-bold">Category :</span>{" "}
-                {product?.category?.name}
-              </p>
-              <p>
-                <span className="font-bold">Shipping :</span>{" "}
-                {product?.shipping ? "Available" : "Not Available"}
-              </p>
-              <p>
-                <span className="font-bold">Quantity :</span> {product.quantity}
-              </p>
-            </div>
-            <button className="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300">
+
+            <button className="mt-auto bg-[#6366f1] hover:bg-[#4f46e5] text-white font-bold py-4 px-8 rounded-xl shadow-xl transition-all duration-300 text-xl transform hover:-translate-y-1">
               ADD TO CART
             </button>
           </div>
         </div>
 
-        <hr className="my-12 border-gray-300" />
-
-        <div className="similar-products">
-          <h2 className="text-3xl font-bold mb-8">Similar Products</h2>
+        <div className="mt-20">
+          <h2 className="text-3xl font-bold mb-10 text-white flex items-center gap-4">
+            <span className="w-12 h-1 bg-[#6366f1] rounded-full"></span>
+            Similar Products
+          </h2>
+          
           {relatedProducts.length < 1 && (
-            <p className="text-center text-gray-500">No Similar Products found</p>
+            <div className="text-center py-12 glass-card">
+              <p className="text-gray-500 text-xl italic">No similar products found at this time.</p>
+            </div>
           )}
-          <div className="flex flex-wrap -mx-2">
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {relatedProducts?.map((p) => (
-              <div key={p._id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4">
-                <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition duration-300">
-                  <img
-                    src={`${import.meta.env.VITE_APP}/product/get_product_photo/${p._id}`}
-                    className="w-full h-48 object-cover"
-                    alt={p.name}
-                  />
-                  <div className="p-4 text-center">
-                    <h5 className="font-bold text-lg mb-2">{p.name}</h5>
-                    <p className="text-gray-600 text-sm mb-4">
-                      {p.description.substring(0, 30)}...
-                    </p>
-                    <p className="text-green-600 font-bold mb-4">$ {p.price}</p>
-                    <div className="flex justify-center gap-2">
-                      <button
-                        className="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold py-2 px-4 rounded"
-                        onClick={() => navigate(`/product/${p.slug}`)}
-                      >
-                        More Details
-                      </button>
-                      <button className="bg-gray-500 hover:bg-gray-600 text-white text-xs font-bold py-2 px-4 rounded">
-                        ADD TO CART
-                      </button>
-                    </div>
+              <div key={p._id} className="product-card">
+                <img
+                  src={`${import.meta.env.VITE_APP}/product/get_product_photo/${p._id}`}
+                  className="card-img-top"
+                  alt={p.name}
+                />
+                <div className="card-body">
+                  <div className="flex justify-between items-start mb-2">
+                    <h5 className="card-title text-lg font-bold text-white">{p.name}</h5>
+                    <span className="text-indigo-400 font-bold">${p.price}</span>
+                  </div>
+                  <p className="card-text text-gray-400 text-sm mb-4">
+                    {p.description.substring(0, 40)}...
+                  </p>
+                  <div className="flex gap-2">
+                    <button
+                      className="btn btn-outline-primary flex-1 py-2 text-sm"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                    >
+                      Details
+                    </button>
+                    <button className="btn btn-primary flex-1 py-2 text-sm">
+                      Cart
+                    </button>
                   </div>
                 </div>
               </div>

@@ -18,7 +18,7 @@ const Layout = ({children,title,description,keywords,author}) => {
 </HelmetProvider>
 
    <Header></Header>
-   <main className='h-[155vh] bg-[#372C2E]'>
+   <main className='min-h-[80vh] bg-transparent'>
     {children}
     <ToastContainer />
    </main>

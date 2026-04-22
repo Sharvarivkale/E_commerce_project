@@ -3,22 +3,18 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <>
-    <div className='footer text-xl bg-[#372C2E] text-light h-[20vh] flex items-center justify-center d-flex flex-col'>
-      <div className='z-index-1'>
-        <h5>All Right Reserved &copy; Sharvrarii💫</h5>
-      </div>
-      <div>
-        <p>
+    <footer className='footer'>
+      <div className='container mx-auto px-6'>
+        <h5 className='text-lg mb-4'>All Rights Reserved &copy; Sharvari💫</h5>
+        <div className='flex justify-center items-center gap-4 text-sm'>
           <Link to="/about">About</Link>
-          <span> | </span>
+          <span className="text-gray-600">|</span>
           <Link to="/contact">Contact</Link>
-          <span> | </span>    
+          <span className="text-gray-600">|</span>    
           <Link to="/policy">Privacy Policy</Link>
-        </p>
+        </div>
       </div>
-    </div>
-    </>
+    </footer>
   )
 }
 

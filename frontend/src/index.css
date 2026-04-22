@@ -1,18 +1,53 @@
 @import "tailwindcss";
-*{
-  background-color: #372C2E;
+
+:root {
+  --primary-color: #6366f1;
+  --secondary-color: #4f46e5;
+  --bg-dark: #121212;
+  --bg-surface: #1e1e1e;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --border-color: #374151;
 }
 
- /* Navbar styles */
-.navbar{
-  box-shadow: 0 8px 6px -6px black;
-  border-bottom: 4px solid  black;
-  text-transform: uppercase;
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: var(--bg-surface) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.025em;
+  color: var(--primary-color) !important;
 }
 
 .custom-nav-link {
   position: relative;
-  color: #FFFAFA;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: color 0.2s ease;
+  text-decoration: none;
+}
+
+.custom-nav-link:hover {
+  color: var(--text-primary);
+}
+
+.custom-nav-link.active {
+  color: var(--primary-color);
 }
 
 /* underline effect */
@@ -20,99 +55,187 @@
   content: "";
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -4px;
   width: 0%;
   height: 2px;
-  background-color: white;
-  transition: 0.3s ease;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
 }
 
-/* hover effect */
-.custom-nav-link:hover::after {
+.custom-nav-link:hover::after,
+.custom-nav-link.active::after {
   width: 100%;
 }
 
-.navbar-brand{
-  font-size: 200;
-  font-family: "Roboto", sans-serif;
-  letter-spacing: 2px;
+/* Footer style */
+.footer {
+  background-color: var(--bg-surface);
+  color: var(--text-secondary);
+  padding: 3rem 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
 }
 
-
-/* footer style */
-.footer {
-  background-color: #372C2E;
-  color: white;
-  padding: 20px 0;
-  text-align: center;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.4);
-  line-height: 1.6;
+.footer h5 {
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 .footer a {
-  color: white;
+  color: var(--text-secondary);
   text-decoration: none;
-  margin: 0 7px;  
+  margin: 0 10px;
+  transition: color 0.2s ease;
 }
 
 .footer a:hover {
-  text-decoration: underline;
-  
+  color: var(--primary-color);
 }
 
-/* page not found page */
-.pnf {
-  background-color: #372C2E;
-  color: white;
-  padding: 50px 0;
-  text-align: center;
-}
-
-.pnf-title {
-  font-size: 90px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.pnf-subtitle {
-  font-size: 24px;
-  margin-bottom: 20px;
-  margin-bottom: 25px;
-}
-
-.pnf-link {
-  color: white;
-  font-size: 20px;
-  border: 1px solid white;
-  margin-top: 5px;
-  margin: 10px;
-  padding: 7px;
-}
-
-/* register page */
-.form{
-  display:flex;
+/* Form container */
+.form-container {
+  display: flex;
   flex-direction: column;
-  justify-content:center;
-  align-items:center;
-  height:75vh;
- 
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem;
 }
 
+.glass-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
 
-/* card css */
+/* Product Card */
 .product-card {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
-  min-height: 380px;  
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
 }
 
 .product-card img {
-  height: 200px;       
-  object-fit: cover;   
+  height: 250px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .product-card .card-body {
+  padding: 1.25rem;
+  color: var(--text-primary);
+}
+
+.product-card .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.product-card .card-text {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Page Not Found */
+.pnf {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.pnf-title {
+  font-size: 8rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  line-height: 1;
+}
+
+.pnf-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pnf-link {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.pnf-link:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+/* Bootstrap Overrides */
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color) !important;
+  border-color: var(--secondary-color) !important;
+}
+
+.btn-outline-primary {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.form-control, .form-select {
+  background-color: var(--bg-dark) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25) !important;
+}
+
+.modal-content {
+  background-color: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
 }

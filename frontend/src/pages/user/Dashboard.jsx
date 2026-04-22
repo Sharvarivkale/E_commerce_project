@@ -6,17 +6,34 @@ import UserMenu from '../../components/layout/usermenu'
 const Dashboard = () => {
   const [auth] = useAuth()
   return (
-    <Layout>
-      <h1>Dashboard</h1>
-      <div className="container-fluid">
+    <Layout title={"Dashboard - E-commerce"}>
+      <div className="container-fluid py-8 px-4">
         <div className="row">
-          <div className="col-md-3 p-3">
+          <div className="col-md-3">
             <UserMenu />
           </div>
-          <div className="col-md-9 p-3 mt-4 text-white ">
-            <h3>User Name: {auth?.user?.name}</h3>
-            <h3>User Email: {auth?.user?.email}</h3>
-            <h3>User Phone: {auth?.user?.phone}</h3>
+          <div className="col-md-9">
+            <div className="glass-card">
+              <h2 className="text-3xl font-bold mb-6 text-[#6366f1] border-b border-[#374151] pb-2">User Profile</h2>
+              <div className="space-y-4">
+                <div className="flex border-b border-[#374151] pb-2">
+                  <span className="w-32 font-semibold text-gray-400">Name:</span>
+                  <span className="text-white text-lg">{auth?.user?.name}</span>
+                </div>
+                <div className="flex border-b border-[#374151] pb-2">
+                  <span className="w-32 font-semibold text-gray-400">Email:</span>
+                  <span className="text-white text-lg">{auth?.user?.email}</span>
+                </div>
+                <div className="flex border-b border-[#374151] pb-2">
+                  <span className="w-32 font-semibold text-gray-400">Phone:</span>
+                  <span className="text-white text-lg">{auth?.user?.phone}</span>
+                </div>
+                <div className="flex">
+                  <span className="w-32 font-semibold text-gray-400">Address:</span>
+                  <span className="text-white text-lg">{auth?.user?.address}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
