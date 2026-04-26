@@ -120,6 +120,13 @@ const CartPage = () => {
                         >
                           Place Order
                         </button>
+                        <button
+                          className="btn btn-outline-info py-3 text-lg font-bold"
+                          onClick={() => navigate("/payment")}
+                          disabled={!auth?.user?.address}
+                        >
+                          Make Payment
+                        </button>
                       </div>
                     </>
                   ) : (

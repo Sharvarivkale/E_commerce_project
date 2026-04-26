@@ -12,6 +12,7 @@
     "concurrently": "^9.2.1",
     "express-formidable": "^1.2.0",
     "fs": "^0.0.1-security",
+    "react-razorpay-checkout": "^1.0.2",
     "slugify": "^1.6.9"
   },
   "devDependencies": {
