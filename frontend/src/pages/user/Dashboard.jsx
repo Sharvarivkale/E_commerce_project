@@ -14,7 +14,7 @@ const Dashboard = () => {
           </div>
           <div className="col-md-9">
             <div className="glass-card">
-              <h2 className="text-3xl font-bold mb-6 text-[#6366f1] border-b border-[#374151] pb-2">User Profile</h2>
+              <h2 className="text-3xl font-bold mb-6 text-white border-b border-[#374151] pb-2">User Profile</h2>
               <div className="space-y-4">
                 <div className="flex border-b border-[#374151] pb-2">
                   <span className="w-32 font-semibold text-gray-400">Name:</span>

@@ -37,18 +37,21 @@ const Payment = () => {
       }
 
       // 1. Get Razorpay Key
-      const { data: { key } } = await axios.get(`${import.meta.env.VITE_APP}/payment/getkey`);
+      const { data: { key } } = await axios.get("/payment/getkey");
+      console.log("Razorpay Key:", key);
 
       // 2. Create Order
       const { data: { order } } = await axios.post(
-        `${import.meta.env.VITE_APP}/payment/checkout`,
-        { amount },
-        {
-          headers: {
-            Authorization: auth?.token,
-          },
-        }
+        "/payment/checkout",
+        { amount }
       );
+      console.log("Razorpay Order:", order);
+
+      if (!order) {
+        toast.error("Failed to create order");
+        setLoading(false);
+        return;
+      }
 
       // 3. Open Razorpay Checkout
       const options = {
@@ -60,21 +63,17 @@ const Payment = () => {
         image: "https://example.com/your_logo",
         order_id: order.id,
         handler: async function (response) {
+          console.log("Razorpay Response:", response);
           try {
             // 4. Verify Payment
             const { data } = await axios.post(
-              `${import.meta.env.VITE_APP}/payment/payment-verification`,
+              "/payment/payment-verification",
               {
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,
                 razorpay_signature: response.razorpay_signature,
                 products: cart,
                 amount: amount,
-              },
-              {
-                headers: {
-                  Authorization: auth?.token,
-                },
               }
             );
 

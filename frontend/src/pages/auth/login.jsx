@@ -53,7 +53,7 @@ const handleSubmit = async (e) => {
       <div className="form-container">
         <div className="glass-card w-full max-w-md shadow-2xl">
           <form onSubmit={handleSubmit}>
-            <h1 className="text-3xl font-bold mb-8 text-center text-[#6366f1] tracking-tight">
+            <h1 className="text-3xl font-bold mb-8 text-center text-white tracking-tight">
               WELCOME BACK
             </h1>
 
@@ -96,7 +96,7 @@ const handleSubmit = async (e) => {
               </button>
               <button 
                 type="button" 
-                className="w-full bg-transparent border border-[#374151] hover:bg-[#374151] text-gray-300 py-2 rounded-lg transition-colors text-sm"
+                className="w-full bg-transparent border border-[#374151] hover:bg-[#374151] text-gray-300 py-2 rounded-lg transition-colors text-sm text-white"
                 onClick={() => navigate("/forgot_password")}
               >
                 Forgot Password?

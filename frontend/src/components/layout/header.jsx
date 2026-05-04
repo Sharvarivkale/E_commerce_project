@@ -117,8 +117,8 @@ const Header = () => {
         )}
 
         <NavLink to="/cart" className="custom-nav-link">
-          <Badge count={cart?.length} showZero offset={[10, -5]}>
-            <span className="text-white hover:text-[#6366f1] transition-colors">Cart</span>
+          <Badge count={cart?.length} showZero>
+            <span className="text-white hover:text-[#6366f1] transition-colors px-2">Cart</span>
           </Badge>
         </NavLink>
 

@@ -47,7 +47,7 @@ const Register = () => {
       <div className="form-container">
         <div className="glass-card w-full max-w-lg shadow-2xl my-8">
           <form onSubmit={handleSubmit}>
-            <h1 className="text-3xl font-bold mb-8 text-center text-[#6366f1] tracking-tight">
+            <h1 className="text-3xl font-bold mb-8 text-center text-white tracking-tight">
               CREATE ACCOUNT
             </h1>
 

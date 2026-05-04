@@ -53,12 +53,13 @@ const paymentVerificationController = async (req, res) => {
 
     if (isAuthentic) {
       // Database logic
+      const productIds = products.map((p) => p._id);
       await new paymentModel({
         razorpay_order_id,
         razorpay_payment_id,
         razorpay_signature,
         user: req.user._id,
-        products,
+        products: productIds,
         amount,
       }).save();
 
@@ -82,4 +83,41 @@ const paymentVerificationController = async (req, res) => {
   }
 };
 
-module.exports = { checkoutController, paymentVerificationController };
+module.exports = {
+  checkoutController,
+  paymentVerificationController,
+  getOrdersController: async (req, res) => {
+    try {
+      const orders = await paymentModel
+        .find({ user: req.user._id })
+        .populate("products", "-photo")
+        .populate("user", "name")
+        .sort({ createdAt: -1 });
+      res.json(orders);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        message: "Error while getting orders",
+        error,
+      });
+    }
+  },
+  getAllOrdersController: async (req, res) => {
+    try {
+      const orders = await paymentModel
+        .find({})
+        .populate("products", "-photo")
+        .populate("user", "name")
+        .sort({ createdAt: -1 });
+      res.json(orders);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({
+        success: false,
+        message: "Error while getting all orders",
+        error,
+      });
+    }
+  },
+};

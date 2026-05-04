@@ -176,7 +176,7 @@ async function updateProfileController(req, res) {
         address: address || user.address,
       },
       { new: true }
-    );
+    ).select("-password");
     res.status(200).send({
       success: true,
       message: "Profile Updated Successfully",

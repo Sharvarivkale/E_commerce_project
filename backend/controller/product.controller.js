@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 const fs=require('fs')
 const productmodel=require('../models/productmodel');
-const categorymodel=require('../models/categorymodel');
+const categorymodel = require('../models/categorymodel');
 const slugify=require('slugify')
 
 
@@ -220,41 +220,28 @@ async function productListController(req, res) {
 async function searchProductController(req, res) {
   try {
     const { keyword } = req.params;
-    
-    // Find categories that match the keyword
-    const categories = await categorymodel.find({
-      name: { $regex: keyword, $options: "i" }
-    });
-    
-    const categoryIds = categories.map(c => c._id);
-
-    const results = await productmodel
-      .find({
-        $or: [
-          { name: { $regex: keyword, $options: "i" } },
-          { description: { $regex: keyword, $options: "i" } },
-          { category: { $in: categoryIds } }
-        ],
-      })
-      .select("-photo")
-      .populate("category");
-
-    res.json({
+    const products = await productmodel.find({
+      $or: [
+        { name: { $regex: keyword, $options: "i" } },
+        { description: { $regex: keyword, $options: "i" } }
+      ]
+    }).select("-photo")
+    res.status(200).json({
       success: true,
-      data: results
+      message: "Product search results retrieved successfully",
+      data: products
     });
   } catch (error) {
-    console.log(error);
-    res.status(400).send({
+    res.status(500).json({
       success: false,
-      message: "Error In Search Product API",
-      error,
+      message: "Failed to retrieve product search results",
+      error: error.message
     });
   }
 }
 
 // similar products
-async function realtedProductController(req, res) {
+async function realtidProductController(req, res) {
   try {
     const { pid, cid } = req.params;
     const products = await productmodel
@@ -273,12 +260,13 @@ async function realtedProductController(req, res) {
     console.log(error);
     res.status(400).send({
       success: false,
-      message: "error while geting related product",
+      message: "error while gettiing related product",
       error,
     });
   }
 }
 
+// get product by category
 async function productCategoryController(req, res) {
   try {
     const category = await categorymodel.findOne({ slug: req.params.slug });
@@ -298,4 +286,4 @@ async function productCategoryController(req, res) {
   }
 }
 
-module.exports={createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,deleteProductController,productFiltersController,productCountController,productListController,searchProductController,realtedProductController,productCategoryController}
+module.exports={createproductController,getProductsController,getSingleProductController,getProductPhotoController,updateProductController,deleteProductController,productFiltersController,productCountController,productListController,searchProductController,realtidProductController,productCategoryController}

@@ -62,7 +62,7 @@ const UserProfile = () => {
           <div className="col-md-9">
             {!isUpdate ? (
               <div className="card w-75 p-4 bg-dark text-white border-secondary">
-                <h1 className="mb-4">USER PROFILE</h1>
+                <h1 className="mb-4 !text-white">USER PROFILE</h1>
                 <div className="user-info">
                   <p><strong>Name:</strong> {auth?.user?.name}</p>
                   <p><strong>Email:</strong> {auth?.user?.email}</p>
@@ -77,9 +77,9 @@ const UserProfile = () => {
                 </div>
               </div>
             ) : (
-              <div className="form-container" style={{ marginTop: "-40px" }}>
-                <form onSubmit={handleSubmit}>
-                  <h4 className="title text-white">UPDATE PROFILE</h4>
+              <div className="form-container " style={{ marginTop: "-40px" }}>
+                <form onSubmit={handleSubmit}className="border-[3px] border-black p-5">
+                  <h4 className="title text-black">UPDATE PROFILE</h4>
                   <div className="mb-3">
                     <input
                       type="text"
