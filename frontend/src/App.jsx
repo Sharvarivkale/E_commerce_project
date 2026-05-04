@@ -12,7 +12,7 @@ import Login from './pages/auth/login'
 import Register from './pages/auth/register'
 import Dashboard from './pages/user/Dashboard';
 import  {PrivateRoute} from './routes/PrivateRoute';
-import { AdminPrivateRoute } from './routes/adminprivateroute';
+import { AdminPrivateRoute } from './routes/Adminprivateroute';
 import Forgotpassword from './pages/auth/Forgotpassword';
 import Admindashboard from './pages/admin/admindashboard';
 import CreateCategory from './pages/admin/CreateCategory';
